@@ -13,6 +13,8 @@
 // creating an array of all listed cards
 let memoryCard = document.getElementsByClassName("card");
 let cards = [...memoryCard];
+// All card container
+const cardDeck= document.getElementById("deck");
 //toggle class after clicking each card
 let displayCard = function(){
 	this.classList.toggle("open");
@@ -36,6 +38,20 @@ function shuffle(array) {
     }
 
     return array;
+}
+
+//@description shuffle the card on page refresh
+window.onload = newGame();
+
+//@description function to start a new game
+function newGame(){
+	let shuffledCards = shuffle(cards);
+	for(const shuffledCard of shuffledCards){
+		[].forEach.call(shuffledCards, function(item){
+			cardDeck.appendChild(item);
+			//console.log(item);
+		});
+	}
 }
 
 
