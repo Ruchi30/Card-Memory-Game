@@ -11,10 +11,13 @@
 
  */
 // creating an array of all listed cards
-let memoryCard = document.getElementsByClassName("card");
+const memoryCard = document.getElementsByClassName("card");
 let cards = [...memoryCard];
+console.log(cards);
 // All card container
 const cardDeck= document.getElementById("deck");
+//Array for opened cards
+let openedCards = [];
 //toggle class after clicking each card
 let displayCard = function(){
 	this.classList.toggle("open");
@@ -24,6 +27,7 @@ let displayCard = function(){
 // adding click function and required classes after click to the card
 for(const card of cards){
 	card.addEventListener("click", displayCard);
+	card.addEventListener("click", openCard);
 }
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -52,6 +56,35 @@ function newGame(){
 			//console.log(item);
 		});
 	}
+}
+//@description function to see the opened card match or unmated
+function openCard(){
+	openedCards.push(this);
+	let openedCardLength = openedCards.length;
+	if(openedCardLength === 2){
+		if(openedCards[0].type == openedCards[1].type){
+			cardMatch();
+		}else{
+			cardUnmatched();
+		}
+	}
+};
+//@description function for when cards match
+function cardMatch(){
+	for(const openCard of openedCards){
+		openCard.classList.add("match");
+		openCard.classList.remove("open", "show");
+	};
+	openedCards = [];
+};
+//@description function for when cards don't match
+function cardUnmatched(){
+	for(const openCard of openedCards){
+		setTimeout(function(){
+			openCard.classList.remove("open", "show", "disabled");
+		},1000);
+	};
+	openedCards=[];
 }
 
 
