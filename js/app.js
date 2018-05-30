@@ -26,7 +26,16 @@ function shuffle(array) {
     return array;
 }
 
-
+let memoryCard = document.getElementsByClassName("card");
+let cards = [...memoryCard];
+let displayCard = function(){
+	this.classList.toggle("open");
+	this.classList.toggle("show");
+	this.classList.toggle("disabled");
+}
+for(const card of cards){
+	card.addEventListener("click", displayCard);
+}
 
 
 /*
