@@ -18,6 +18,8 @@ console.log(cards);
 const cardDeck= document.getElementById("deck");
 //Array for opened cards
 let openedCards = [];
+//Array for opened cards
+let matchedCards = [];
 //toggle class after clicking each card
 let displayCard = function(){
 	this.classList.toggle("open");
@@ -74,19 +76,36 @@ function cardMatch(){
 	for(const openCard of openedCards){
 		openCard.classList.add("match");
 		openCard.classList.remove("open", "show");
+		matchedCards.push(this);
 	};
 	openedCards = [];
 };
 //@description function for when cards don't match
 function cardUnmatched(){
+	disableOtherCards();
 	for(const openCard of openedCards){
 		setTimeout(function(){
-			openCard.classList.remove("open", "show", "disabled");
+			openCard.classList.remove("open", "show");
+			enableOtherCards();
 		},1000);
 	};
 	openedCards=[];
+};
+//for disabling other cards
+function disableOtherCards(){
+	for(const card of cards){
+		card.classList.add("disabled");
+	}
 }
-
+//for enabling other cards except the matched cards
+function enableOtherCards(){
+	for(const card of cards){
+		card.classList.remove("disabled");
+	};
+	for(const matchedCard of matchedCards){
+		matchedCard.classList.add("disabled");
+	}
+}
 
 
 /*
