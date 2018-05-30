@@ -10,7 +10,19 @@
  *   - add each card's HTML to the page
 
  */
-
+// creating an array of all listed cards
+let memoryCard = document.getElementsByClassName("card");
+let cards = [...memoryCard];
+//toggle class after clicking each card
+let displayCard = function(){
+	this.classList.toggle("open");
+	this.classList.toggle("show");
+	this.classList.toggle("disabled");
+}
+// adding click function and required classes after click to the card
+for(const card of cards){
+	card.addEventListener("click", displayCard);
+}
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -26,16 +38,6 @@ function shuffle(array) {
     return array;
 }
 
-let memoryCard = document.getElementsByClassName("card");
-let cards = [...memoryCard];
-let displayCard = function(){
-	this.classList.toggle("open");
-	this.classList.toggle("show");
-	this.classList.toggle("disabled");
-}
-for(const card of cards){
-	card.addEventListener("click", displayCard);
-}
 
 
 /*
