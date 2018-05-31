@@ -26,6 +26,8 @@ let count = 0;
 //Restart Game
 let restart = document.querySelector(".restart");
 restart.addEventListener("click", restartGame);
+//Array for Star Rating
+const stars = document.querySelectorAll(".fa-star");
 //toggle class after clicking each card
 let displayCard = function(){
 	this.classList.toggle("open");
@@ -117,6 +119,7 @@ function enableOtherCards(){
 function moveCounter(){
 	count++;
 	counter.innerHTML = count;
+	starRating();
 }
 //@description function restart the game
 function restartGame(){
@@ -125,9 +128,28 @@ function restartGame(){
 	counter.innerHTML = count;
 	for(const card of cards){
 		card.classList.remove("match","show","open","disabled");
+	};
+	for(const star of stars){
+		star.style.display="block";
 	}
 }
-
+//@description function star rate the game
+function starRating(){
+	if(count > 7 && count < 12){
+		for( i= 0; i < 3; i++){
+			if(i > 1){
+				stars[i].style.display="none";
+			}
+		}
+	}
+	else if(count >= 12 ){
+		for( i= 0; i < 3; i++){
+			if(i > 0){
+				stars[i].style.display="none";
+			}
+		}
+	}
+}
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
