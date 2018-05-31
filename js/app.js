@@ -21,10 +21,10 @@ let openedCards = [];
 //Array for opened cards
 let matchedCards = [];
 //Move Counter
-let counter = document.querySelector(".moves");
+const counter = document.querySelector(".moves");
 let count = 0;
 //Restart Game
-let restart = document.querySelector(".restart");
+const restart = document.querySelector(".restart");
 restart.addEventListener("click", restartGame);
 //Array for Star Rating
 const stars = document.querySelectorAll(".fa-star");
