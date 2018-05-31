@@ -23,6 +23,9 @@ let matchedCards = [];
 //Move Counter
 let counter = document.querySelector(".moves");
 let count = 0;
+//Restart Game
+let restart = document.querySelector(".restart");
+restart.addEventListener("click", restartGame);
 //toggle class after clicking each card
 let displayCard = function(){
 	this.classList.toggle("open");
@@ -115,7 +118,15 @@ function moveCounter(){
 	count++;
 	counter.innerHTML = count;
 }
-
+//@description function restart the game
+function restartGame(){
+	newGame();
+	count = 0;
+	counter.innerHTML = count;
+	for(const card of cards){
+		card.classList.remove("match","show","open","disabled");
+	}
+}
 
 /*
  * set up the event listener for a card. If a card is clicked:
