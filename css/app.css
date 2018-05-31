@@ -42,8 +42,7 @@ h1 {
  */
 
 .deck {
-    width: 660px;
-    min-height: 680px;
+    width: 86%;
     background: linear-gradient(160deg, #e4a0f7 0%, #b284be 100%);
     padding: 32px;
     border-radius: 10px;
@@ -56,8 +55,7 @@ h1 {
 }
 
 .deck .card {
-    height: 125px;
-    width: 125px;
+    width: 22%;
     background: #784b84;
     font-size: 0;
     color: #ffffff;
@@ -66,7 +64,14 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 1.2rem;
     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+}
+
+.deck .card:before{
+    content: "";
+    display: block;
+    padding-top: 100%;  /* initial ratio of 1:1*/
 }
 
 .deck .card.open {
@@ -159,7 +164,7 @@ h1 {
 
 .score-panel {
     text-align: left;
-    width: 600px;
+    width: 86%;
     margin-bottom: 10px;
     font-size: 1.3em;
 }
@@ -191,7 +196,7 @@ h1 {
     display: none;
     position: fixed;
     z-index: 1;
-    padding-top: 100px;
+    padding-top: 150px;
     left: 0;
     top: 0;
     width: 100%;
@@ -206,7 +211,7 @@ h1 {
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 600px;
+    width: 70%;
 }
 
 .close {
@@ -251,6 +256,27 @@ h1 {
     color: #02ccba;
 }
 
-.finalMoves, .finalTime{
+.finalMoves, .finalTime {
     font-weight: 600;
+}
+
+@media (min-width: 680px) {
+    .deck {
+        width: 660px;
+        height: 680px;
+    }
+
+    .deck .card {
+        height: 125px;
+        width: 125px;
+        margin-bottom: 0;
+    }
+
+    .modal-content {
+        width: 500px;
+    }
+
+    .score-panel {
+        width: 600px;
+    }
 }
