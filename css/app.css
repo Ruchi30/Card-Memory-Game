@@ -191,7 +191,9 @@ h1 {
     float: right;
     margin-right: 15px;
 }
-
+/*
+ * Styles for the modal box
+ */
 .modal {
     display: none;
     position: fixed;
@@ -260,6 +262,9 @@ h1 {
     font-weight: 600;
 }
 
+/*
+ * media queries
+ */
 @media (min-width: 680px) {
     .deck {
         width: 660px;
