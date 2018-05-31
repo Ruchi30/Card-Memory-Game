@@ -138,7 +138,6 @@ h1 {
         -webkit-transform: scale(1);
         -ms-transform: scale(1);
         transform: scale(1);
-        transition: opacity:;
     }
     50% {
         background-color: #b80f0a;
@@ -186,4 +185,72 @@ h1 {
 .score-panel .timer {
     float: right;
     margin-right: 10px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 600px;
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.modal h1 .fa {
+    color: gold;
+}
+.close:hover, .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.summary {
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.summary div{
+    margin: 10px 0;
+}
+
+.summary div:last-of-type{
+    display: inline-block;
+}
+
+.finalRating {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    margin: 0 5px 0 0;
+}
+
+.finalRating li {
+    list-style: none;
+    display: inline-block;
+    color: #02ccba;
+}
+
+.finalMoves, .finalTime{
+    font-weight: 600;
 }

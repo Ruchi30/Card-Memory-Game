@@ -33,6 +33,12 @@ const timer = document.querySelector(".timer");
 let sec = 0;
 let min = 0;
 let hour = 0;
+//Modal box
+const modal = document.querySelector(".modal");
+const modalClose = document.querySelector(".close");
+const finalMoves = document.querySelector(".finalMoves");
+const finalTime = document.querySelector(".finalTime");
+const finalRating = document.querySelector(".finalRating");
 //toggle class after clicking each card
 let displayCard = function(){
 	this.classList.toggle("open");
@@ -43,6 +49,7 @@ let displayCard = function(){
 for(const card of cards){
 	card.addEventListener("click", displayCard);
 	card.addEventListener("click", openCard);
+	card.addEventListener("click", openModal);
 }
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -187,6 +194,24 @@ function resetTimer(){
 	sec = 0;
 	min = 0;
 	hour = 0;
+};
+
+function openModal(){
+	const totalTime = document.querySelector(".timer").innerHTML;
+	const starRating = document.querySelector(".stars").innerHTML;
+	finalMoves.innerHTML = count;
+	finalTime.innerHTML = totalTime;
+	finalRating.innerHTML = starRating;
+	if(matchedCards.length === 16){
+		modal.style.display = "block";
+	};
+	closeModal();
+}
+function closeModal(){
+	modalClose.addEventListener("click", function(e){
+		modal.style.display = "none";
+		restartGame();
+	});
 }
 /*
  * set up the event listener for a card. If a card is clicked:
