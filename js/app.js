@@ -20,6 +20,9 @@ const cardDeck= document.getElementById("deck");
 let openedCards = [];
 //Array for opened cards
 let matchedCards = [];
+//Move Counter
+let counter = document.querySelector(".moves");
+let count = 0;
 //toggle class after clicking each card
 let displayCard = function(){
 	this.classList.toggle("open");
@@ -58,12 +61,13 @@ function newGame(){
 			//console.log(item);
 		});
 	}
-}
+};
 //@description function to see the opened card match or unmated
 function openCard(){
 	openedCards.push(this);
 	let openedCardLength = openedCards.length;
 	if(openedCardLength === 2){
+		moveCounter();
 		if(openedCards[0].type == openedCards[1].type){
 			cardMatch();
 		}else{
@@ -96,7 +100,7 @@ function disableOtherCards(){
 	for(const card of cards){
 		card.classList.add("disabled");
 	}
-}
+};
 //for enabling other cards except the matched cards
 function enableOtherCards(){
 	for(const card of cards){
@@ -105,6 +109,11 @@ function enableOtherCards(){
 	for(const matchedCard of matchedCards){
 		matchedCard.classList.add("disabled");
 	}
+};
+//@description function count the Moves
+function moveCounter(){
+	count++;
+	counter.innerHTML = count;
 }
 
 
