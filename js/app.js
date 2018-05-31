@@ -85,7 +85,7 @@ function cardMatch(){
 	for(const openCard of openedCards){
 		openCard.classList.add("match");
 		openCard.classList.remove("open", "show");
-		matchedCards.push(this);
+		matchedCards.push(openCard);
 	};
 	openedCards = [];
 };
@@ -111,8 +111,10 @@ function enableOtherCards(){
 	for(const card of cards){
 		card.classList.remove("disabled");
 	};
-	for(const matchedCard of matchedCards){
-		matchedCard.classList.add("disabled");
+	if(matchedCards.length>0){
+		for(const matchedCard of matchedCards){
+			matchedCard.classList.add("disabled");
+		}
 	}
 };
 //@description function count the Moves
