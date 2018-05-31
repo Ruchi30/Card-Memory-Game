@@ -32,7 +32,6 @@ const stars = document.querySelectorAll(".fa-star");
 const timer = document.querySelector(".timer");
 let sec = 0;
 let min = 0;
-let hour = 0;
 //Modal box
 const modal = document.querySelector(".modal");
 const modalClose = document.querySelector(".close");
@@ -179,10 +178,10 @@ function setTimer(){
 		min++;
 		if(min >= 60){
 			min = 0;
-			hour++;
 		}
 	}
-	timer.textContent = (hour ? (hour > 9 ? hour : "0" + hour) : "00") + ":" + (min ? (min > 9 ? min : "0" + min) : "00") + ":" + (sec > 9 ? sec : "0" + sec);
+	//timer.textContent = (min ? (min > 9 ? min : "0" + min) : "00") + ":" + (sec > 9 ? sec : "0" + sec);
+	timer.innerHTML = `${min} minute and ${sec} second`;
 	startTimer();
 }
 function startTimer(){
@@ -190,10 +189,9 @@ function startTimer(){
 }
 function resetTimer(){
 	clearTimeout(t);
-	timer.textContent = "00:00:00";
+	timer.textContent = "0 minute and 0 second";
 	sec = 0;
 	min = 0;
-	hour = 0;
 }
 
 function openModal(){
