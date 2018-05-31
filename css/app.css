@@ -29,8 +29,12 @@ body {
 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Coda', cursive;
     font-weight: 300;
+    color: #311432;
+    font-size: 3em;
+    margin: 10px 0;
+    padding: 0;
 }
 
 /*
@@ -40,7 +44,7 @@ h1 {
 .deck {
     width: 660px;
     min-height: 680px;
-    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    background: linear-gradient(160deg, #e4a0f7 0%, #b284be 100%);
     padding: 32px;
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
@@ -54,7 +58,7 @@ h1 {
 .deck .card {
     height: 125px;
     width: 125px;
-    background: #2e3d49;
+    background: #784b84;
     font-size: 0;
     color: #ffffff;
     border-radius: 8px;
@@ -67,12 +71,30 @@ h1 {
 
 .deck .card.open {
     transform: rotateY(0);
-    background: #02b3e4;
+    background: #311432;
     cursor: default;
 }
 
 .deck .card.show {
     font-size: 33px;
+    animation-name: flip;
+    animation-duration: .5s;
+}
+@keyframes flip {
+    0% {
+        transform: rotateX(0deg);
+        opacity: 0;
+        transition: opacity .25s ease-in-out;
+        -moz-transition: opacity .25s ease-in-out;
+        -webkit-transition: opacity .25s ease-in-out;
+    }
+    100% {
+        transform: rotateX(-360deg);
+        opacity: 1;
+        transition: opacity .25s ease-in-out;
+        -moz-transition: opacity .25s ease-in-out;
+        -webkit-transition: opacity .25s ease-in-out;
+    }
 }
 
 .deck .card.disabled {
@@ -83,6 +105,53 @@ h1 {
     cursor: default;
     background: #02ccba;
     font-size: 33px;
+    animation-name: stretchMatch;
+    animation-duration: 1.2s;
+}
+@keyframes stretchMatch {
+    0% {
+        background: #50C878;
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+    50% {
+        background-color: #2E8B57;
+        -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+    100% {
+        background: #50C878;
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+}
+.deck .card.unmatch {
+    animation-name: stretchUnmatch;
+    animation-duration: 1.2s;
+}
+@keyframes stretchUnmatch {
+    0% {
+        background-color: #CA3433;
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+        transition: opacity:;
+    }
+    50% {
+        background-color: #b80f0a;
+        -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+    100% {
+        background-color: #CA3433;
+        -webkit-transform: scale(.9);
+        -ms-transform: scale(.9);
+        transform: scale(.9);
+    }
 }
 
 /*
@@ -91,8 +160,9 @@ h1 {
 
 .score-panel {
     text-align: left;
-    width: 345px;
+    width: 600px;
     margin-bottom: 10px;
+    font-size: 1.3em;
 }
 
 .score-panel .stars {
@@ -105,6 +175,7 @@ h1 {
 .score-panel .stars li {
     list-style: none;
     display: inline-block;
+    color: #02ccba;
 }
 
 .score-panel .restart {

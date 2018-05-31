@@ -93,10 +93,11 @@ function cardMatch(){
 function cardUnmatched(){
 	disableOtherCards();
 	for(const openCard of openedCards){
+		openCard.classList.add("unmatch");
 		setTimeout(function(){
-			openCard.classList.remove("open", "show");
+			openCard.classList.remove("open", "show", "unmatch");
 			enableOtherCards();
-		},1000);
+		},1200);
 	};
 	openedCards=[];
 };
@@ -126,10 +127,12 @@ function moveCounter(){
 //@description function restart the game
 function restartGame(){
 	newGame();
+	openedCards=[];
+	matchedCards=[];
 	count = 0;
 	counter.innerHTML = count;
 	for(const card of cards){
-		card.classList.remove("match","show","open","disabled");
+		card.classList.remove("match","show","open","disabled","unmatch");
 	};
 	for(const star of stars){
 		star.style.display="block";
