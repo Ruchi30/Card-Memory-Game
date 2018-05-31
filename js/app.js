@@ -157,14 +157,14 @@ function restartGame(){
 //@description function star rate the game
 function starRating(){
 	if(count > 7 && count < 12){
-		for( i= 0; i < 3; i++){
+		for(let i= 0; i < 3; i++){
 			if(i > 1){
 				stars[i].style.display="none";
 			}
 		}
 	}
 	else if(count >= 12 ){
-		for( i= 0; i < 3; i++){
+		for(let i= 0; i < 3; i++){
 			if(i > 0){
 				stars[i].style.display="none";
 			}
