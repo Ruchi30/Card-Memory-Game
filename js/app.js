@@ -78,7 +78,7 @@ function newGame(){
 			//console.log(item);
 		});
 	}
-};
+}
 //@description function to see the opened card match or unmated
 function openCard(){
 	openedCards.push(this);
@@ -91,16 +91,16 @@ function openCard(){
 			cardUnmatched();
 		}
 	}
-};
+}
 //@description function for when cards match
 function cardMatch(){
 	for(const openCard of openedCards){
 		openCard.classList.add("match");
 		openCard.classList.remove("open", "show");
 		matchedCards.push(openCard);
-	};
+	}
 	openedCards = [];
-};
+}
 //@description function for when cards don't match
 function cardUnmatched(){
 	disableOtherCards();
@@ -110,26 +110,26 @@ function cardUnmatched(){
 			openCard.classList.remove("open", "show", "unmatch");
 			enableOtherCards();
 		},1200);
-	};
+	}
 	openedCards=[];
-};
+}
 //for disabling other cards
 function disableOtherCards(){
 	for(const card of cards){
 		card.classList.add("disabled");
 	}
-};
+}
 //for enabling other cards except the matched cards
 function enableOtherCards(){
 	for(const card of cards){
 		card.classList.remove("disabled");
-	};
+	}
 	if(matchedCards.length>0){
 		for(const matchedCard of matchedCards){
 			matchedCard.classList.add("disabled");
 		}
 	}
-};
+}
 //@description function count the Moves
 function moveCounter(){
 	count++;
@@ -149,7 +149,7 @@ function restartGame(){
 	counter.innerHTML = count;
 	for(const card of cards){
 		card.classList.remove("match","show","open","disabled","unmatch");
-	};
+	}
 	for(const star of stars){
 		star.style.display="block";
 	}
@@ -194,7 +194,7 @@ function resetTimer(){
 	sec = 0;
 	min = 0;
 	hour = 0;
-};
+}
 
 function openModal(){
 	const totalTime = document.querySelector(".timer").innerHTML;
@@ -204,7 +204,7 @@ function openModal(){
 	finalRating.innerHTML = starRating;
 	if(matchedCards.length === 16){
 		modal.style.display = "block";
-	};
+	}
 	closeModal();
 }
 function closeModal(){
