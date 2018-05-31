@@ -155,14 +155,14 @@ function restartGame(){
 }
 //@description function star rate the game
 function starRating(){
-	if(count > 7 && count < 12){
+	if(count > 10 && count < 15){
 		for(let i= 0; i < 3; i++){
 			if(i > 1){
 				stars[i].style.display="none";
 			}
 		}
 	}
-	else if(count >= 12 ){
+	else if(count >= 15 ){
 		for(let i= 0; i < 3; i++){
 			if(i > 0){
 				stars[i].style.display="none";
@@ -187,12 +187,16 @@ function setTimer(){
 function startTimer(){
 	t = setTimeout(setTimer, 1000);
 }
+function stopTimer(){
+	clearTimeout(t);
+}
 function resetTimer(){
 	clearTimeout(t);
 	timer.textContent = "0 minute and 0 second";
 	sec = 0;
 	min = 0;
 }
+
 
 function openModal(){
 	const totalTime = document.querySelector(".timer").innerHTML;
@@ -201,6 +205,7 @@ function openModal(){
 	finalTime.innerHTML = totalTime;
 	finalRating.innerHTML = starRating;
 	if(matchedCards.length === 16){
+		stopTimer();
 		modal.style.display = "block";
 	}
 	closeModal();
