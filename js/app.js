@@ -28,11 +28,6 @@ const restart = document.querySelector(".restart");
 restart.addEventListener("click", restartGame);
 //Array for Star Rating
 const stars = document.querySelectorAll(".fa-star");
-//Timer
-const timer = document.querySelector(".timer");
-let sec = 0;
-let min = 0;
-let hour = 0;
 //toggle class after clicking each card
 let displayCard = function(){
 	this.classList.toggle("open");
@@ -128,14 +123,10 @@ function moveCounter(){
 	count++;
 	counter.innerHTML = count;
 	starRating();
-	if(count === 1){
-		startTimer();
-	}
 }
 //@description function restart the game
 function restartGame(){
 	newGame();
-	resetTimer();
 	openedCards=[];
 	matchedCards=[];
 	count = 0;
@@ -163,30 +154,6 @@ function starRating(){
 			}
 		}
 	}
-}
-//@description function timer
-function setTimer(){
-	sec++;
-	if(sec >= 60){
-		sec = 0;
-		min++;
-		if(min >= 60){
-			min = 0;
-			hour++;
-		}
-	}
-	timer.textContent = (hour ? (hour > 9 ? hour : "0" + hour) : "00") + ":" + (min ? (min > 9 ? min : "0" + min) : "00") + ":" + (sec > 9 ? sec : "0" + sec);
-	startTimer();
-}
-function startTimer(){
-	t = setTimeout(setTimer, 1000);
-}
-function resetTimer(){
-	clearTimeout(t);
-	timer.textContent = "00:00:00";
-	sec = 0;
-	min = 0;
-	hour = 0;
 }
 /*
  * set up the event listener for a card. If a card is clicked:
