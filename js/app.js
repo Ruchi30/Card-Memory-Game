@@ -41,6 +41,7 @@ const successClose = document.querySelector(".successClose");
 const finalMoves = document.querySelector(".finalMoves");
 const finalTime = document.querySelector(".finalTime");
 const finalRating = document.querySelector(".finalRating");
+const btnPlay = document.querySelector(".btnPlay");
 //Expire Modal box
 const expireModal = document.querySelector(".expire");
 const expireClose = document.querySelector(".expireClose");
@@ -164,7 +165,7 @@ function restartGame(){
 	matchedCards=[];
 	count = 0;
 	counter.innerHTML = count;
-	//errorMsg.textContent = "";
+	errorMsg.textContent = "";
 	for(const card of cards){
 		card.classList.remove("match","show","open","disabled","unmatch");
 	}
@@ -232,11 +233,19 @@ function openSuccessModal(){
 		successModal.style.display = "block";
 	}
 	closeSuccessModal();
+	playAgain();
 }
 
 //for closing the modal box
 function closeSuccessModal(){
 	successClose.addEventListener("click", function(e){
+		successModal.style.display = "none";
+		restartGame();
+	});
+}
+
+function playAgain(){
+	btnPlay.addEventListener("click", function(e){
 		successModal.style.display = "none";
 		restartGame();
 	});
