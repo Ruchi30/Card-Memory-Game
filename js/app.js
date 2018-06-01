@@ -30,15 +30,20 @@ const stars = document.querySelectorAll(".fa-star");
 const timer = document.querySelector(".timer");
 let sec = 0;
 let min = 0;
+let timerInterval;
 //ideal time
 let idealTime = 0;
+let idealInterval;
 let errorMsg = document.querySelector(".errorMsg");
-//Modal box
-const modal = document.querySelector(".modal");
-const modalClose = document.querySelector(".close");
+//Success Modal box
+const successModal = document.querySelector(".success");
+const successClose = document.querySelector(".successClose");
 const finalMoves = document.querySelector(".finalMoves");
 const finalTime = document.querySelector(".finalTime");
 const finalRating = document.querySelector(".finalRating");
+//Expire Modal box
+const expireModal = document.querySelector(".expire");
+const expireClose = document.querySelector(".expireClose");
 //toggle class after clicking each card
 let displayCard = function(){
 	this.classList.toggle("open");
@@ -50,7 +55,7 @@ let displayCard = function(){
 for(const card of cards){
 	card.addEventListener("click", displayCard);
 	card.addEventListener("click", openCard);
-	card.addEventListener("click", openModal);
+	card.addEventListener("click", openSuccessModal);
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -86,7 +91,7 @@ function newGame(){
 function openCard(){
 	openedCards.push(this);
 	idealTime = 0;
-	errorMsg.textContent = "";
+	errorMsg.textContent = "Your Game will expire in 5min.";
 	let openedCardLength = openedCards.length;
 	if(openedCardLength === 2){
 		moveCounter();
@@ -193,8 +198,8 @@ function startTimer(){
 		if(sec >= 60){
 			sec = 0;
 			min++;
-			if(min >= 60){
-				min++
+			if(min >= 5){
+				openExpireModal();
 			}
 		}
 		timer.innerHTML = `${min} minute and ${sec} second`;
@@ -215,7 +220,8 @@ function resetTimer(){
 }
 
 //@description congratulation modal box
-function openModal(){
+
+function openSuccessModal(){
 	const totalTime = document.querySelector(".timer").innerHTML;
 	const starRating = document.querySelector(".stars").innerHTML;
 	finalMoves.innerHTML = count;
@@ -224,18 +230,38 @@ function openModal(){
 	if(matchedCards.length === 16){
 		stopTimer();
 		stopIdealTimeOut();
-		modal.style.display = "block";
+		successModal.style.display = "block";
 	}
-	closeModal();
+	closeSuccessModal();
 }
 
 //for closing the modal box
-function closeModal(){
-	modalClose.addEventListener("click", function(e){
-		modal.style.display = "none";
+function closeSuccessModal(){
+	successClose.addEventListener("click", function(e){
+		successModal.style.display = "none";
 		restartGame();
 	});
 }
+
+//@description expire modal box
+function openExpireModal(){
+	stopTimer();
+	stopIdealTimeOut();
+	expireModal.style.display = "block";
+	errorMsg.textContent = "";
+	closeExpireModal();
+}
+
+//for closing the modal box
+function closeExpireModal(){
+	expireClose.addEventListener("click", function(e){
+		expireModal.style.display = "none";
+		restartGame();
+	});
+}
+
+
+
 
 //@description function ideal timeout
 function startIdealTimeOut(){
