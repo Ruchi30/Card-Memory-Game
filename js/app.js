@@ -219,6 +219,7 @@ function openModal(){
 	}
 	closeModal();
 }
+
 function closeModal(){
 	modalClose.addEventListener("click", function(e){
 		modal.style.display = "none";
@@ -231,11 +232,11 @@ function idealTimeOut(){
 	idealTime++
 	startIdealTimeOut();
 	console.log(idealTime);
-	if(idealTime > 10){
+	if(idealTime > 120){
 		clearTimeout(t1);
 		idealTime = 0;
 		restartGame();
-		errorMsg.textContent = "Game Reset due to inactivity of 20 Sec";
+		errorMsg.textContent = "Game Reset due to inactivity of 2 Min";
 	}
 }
 
