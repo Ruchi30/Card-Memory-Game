@@ -245,7 +245,7 @@ function closeModal(){
 function idealTimeOut(){
 	idealTime++
 	startIdealTimeOut();
-	console.log(idealTime);
+	//console.log(idealTime);
 	if(idealTime > 120){
 		clearTimeout(t1);
 		idealTime = 0;
