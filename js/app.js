@@ -187,32 +187,28 @@ function starRating(){
 }
 
 //@description function timer
-function setTimer(){
-	sec++;
-	if(sec >= 60){
-		sec = 0;
-		min++;
-		if(min >= 60){
-			min = 0;
-		}
-	}
-	timer.innerHTML = `${min} minute and ${sec} second`;
-	startTimer();
-}
-
-//for starting the timer
 function startTimer(){
-	t = setTimeout(setTimer, 1000);
+	timerInterval = setInterval(function(){
+		sec++;
+		if(sec >= 60){
+			sec = 0;
+			min++;
+			if(min >= 60){
+				min++
+			}
+		}
+		timer.innerHTML = `${min} minute and ${sec} second`;
+	},1000);
 }
 
 //for stoping the timer
 function stopTimer(){
-	clearTimeout(t);
+	clearInterval(timerInterval);
 }
 
 //for refreshing the timer
 function resetTimer(){
-	clearTimeout(t);
+	clearInterval(timerInterval);
 	timer.textContent = "0 minute and 0 second";
 	sec = 0;
 	min = 0;
@@ -227,7 +223,7 @@ function openModal(){
 	finalRating.innerHTML = starRating;
 	if(matchedCards.length === 16){
 		stopTimer();
-		clearTimeout(t1);
+		stopIdealTimeOut();
 		modal.style.display = "block";
 	}
 	closeModal();
@@ -242,21 +238,21 @@ function closeModal(){
 }
 
 //@description function ideal timeout
-function idealTimeOut(){
-	idealTime++
-	startIdealTimeOut();
-	//console.log(idealTime);
-	if(idealTime > 120){
-		clearTimeout(t1);
-		idealTime = 0;
-		restartGame();
-		errorMsg.textContent = "Game Reset due to inactivity of 2 Min";
-	}
+function startIdealTimeOut(){
+	idealInterval = setInterval(function(){
+		idealTime++
+		if(idealTime > 120){
+			stopIdealTimeOut();
+			idealTime = 0;
+			restartGame();
+			errorMsg.textContent = "Game Reset due to inactivity of 2 Min";
+		}
+	},1000);
 }
 
 //for starting the ideal timeout timer
-function startIdealTimeOut(){
-	t1 = setTimeout(idealTimeOut, 1000);
+function stopIdealTimeOut(){
+	clearInterval(idealInterval);
 }
 
 /*
