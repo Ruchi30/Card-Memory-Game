@@ -37,10 +37,7 @@ h1 {
     padding: 0;
 }
 
-/*
- * Styles for the deck of cards
- */
-
+/** Styles for the deck of cards*/
 .deck {
     width: 86%;
     background: linear-gradient(160deg, #e4a0f7 0%, #b284be 100%);
@@ -71,7 +68,7 @@ h1 {
 .deck .card:before{
     content: "";
     display: block;
-    padding-top: 100%;  /* initial ratio of 1:1*/
+    padding-top: 100%;
 }
 
 .deck .card.open {
@@ -85,22 +82,6 @@ h1 {
     animation-name: flip;
     animation-duration: .5s;
 }
-@keyframes flip {
-    0% {
-        transform: rotateX(0deg);
-        opacity: 0;
-        transition: opacity .25s ease-in-out;
-        -moz-transition: opacity .25s ease-in-out;
-        -webkit-transition: opacity .25s ease-in-out;
-    }
-    100% {
-        transform: rotateX(-360deg);
-        opacity: 1;
-        transition: opacity .25s ease-in-out;
-        -moz-transition: opacity .25s ease-in-out;
-        -webkit-transition: opacity .25s ease-in-out;
-    }
-}
 
 .deck .card.disabled {
     pointer-events: none;
@@ -113,55 +94,13 @@ h1 {
     animation-name: stretchMatch;
     animation-duration: 1.2s;
 }
-@keyframes stretchMatch {
-    0% {
-        background: #50C878;
-        -webkit-transform: scale(1);
-        -ms-transform: scale(1);
-        transform: scale(1);
-    }
-    50% {
-        background-color: #2E8B57;
-        -webkit-transform: scale(1.2);
-        -ms-transform: scale(1.2);
-        transform: scale(1.2);
-    }
-    100% {
-        background: #50C878;
-        -webkit-transform: scale(1);
-        -ms-transform: scale(1);
-        transform: scale(1);
-    }
-}
+
 .deck .card.unmatch {
     animation-name: stretchUnmatch;
     animation-duration: 1.2s;
 }
-@keyframes stretchUnmatch {
-    0% {
-        background-color: #CA3433;
-        -webkit-transform: scale(1);
-        -ms-transform: scale(1);
-        transform: scale(1);
-    }
-    50% {
-        background-color: #b80f0a;
-        -webkit-transform: scale(1.2);
-        -ms-transform: scale(1.2);
-        transform: scale(1.2);
-    }
-    100% {
-        background-color: #CA3433;
-        -webkit-transform: scale(.9);
-        -ms-transform: scale(.9);
-        transform: scale(.9);
-    }
-}
 
-/*
- * Styles for the Score Panel
- */
-
+/*Styles for the Score Panel*/
 .score-panel {
     text-align: left;
     width: 86%;
@@ -191,15 +130,15 @@ h1 {
     float: right;
     margin-right: 15px;
 }
+
 .score-panel .errorMsg {
     color: red;
     width: 100%;
     text-align: center;
     font-size: 1rem;
 }
-/*
- * Styles for the modal box
- */
+
+/* Styles for the modal box*/
 .modal {
     display: none;
     position: fixed;
@@ -232,6 +171,7 @@ h1 {
 .modal h1 .fa {
     color: gold;
 }
+
 .close:hover, .close:focus {
     color: #000;
     text-decoration: none;
@@ -268,9 +208,7 @@ h1 {
     font-weight: 600;
 }
 
-/*
- * media queries
- */
+/** media queries*/
 @media (min-width: 680px) {
     .deck {
         width: 660px;
@@ -293,5 +231,65 @@ h1 {
 
     h1 {
         font-size: 3rem;
+    }
+}
+
+/** amination keyframes */
+@keyframes flip {
+    0% {
+        transform: rotateX(0deg);
+        opacity: 0;
+        transition: opacity .25s ease-in-out;
+        -moz-transition: opacity .25s ease-in-out;
+        -webkit-transition: opacity .25s ease-in-out;
+    }
+    100% {
+        transform: rotateX(-360deg);
+        opacity: 1;
+        transition: opacity .25s ease-in-out;
+        -moz-transition: opacity .25s ease-in-out;
+        -webkit-transition: opacity .25s ease-in-out;
+    }
+}
+
+@keyframes stretchMatch {
+    0% {
+        background: #50C878;
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+    50% {
+        background-color: #2E8B57;
+        -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+    100% {
+        background: #50C878;
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes stretchUnmatch {
+    0% {
+        background-color: #CA3433;
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+    50% {
+        background-color: #b80f0a;
+        -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+    100% {
+        background-color: #CA3433;
+        -webkit-transform: scale(.9);
+        -ms-transform: scale(.9);
+        transform: scale(.9);
     }
 }

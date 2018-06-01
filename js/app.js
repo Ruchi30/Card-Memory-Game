@@ -1,8 +1,6 @@
 /*
  * Create a list that holds all of your cards
  */
-
-
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -47,12 +45,14 @@ let displayCard = function(){
 	this.classList.toggle("show");
 	this.classList.toggle("disabled");
 }
+
 // adding click function and required classes after click to the card
 for(const card of cards){
 	card.addEventListener("click", displayCard);
 	card.addEventListener("click", openCard);
 	card.addEventListener("click", openModal);
 }
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -81,6 +81,7 @@ function newGame(){
 		});
 	}
 }
+
 //@description function to see the opened card match or unmatched
 function openCard(){
 	openedCards.push(this);
@@ -96,6 +97,7 @@ function openCard(){
 		}
 	}
 }
+
 //@description function for when cards match
 function cardMatch(){
 	for(const openCard of openedCards){
@@ -105,6 +107,7 @@ function cardMatch(){
 	}
 	openedCards = [];
 }
+
 //@description function for when cards don't match
 function cardUnmatched(){
 	disableOtherCards();
@@ -117,12 +120,14 @@ function cardUnmatched(){
 	}
 	openedCards=[];
 }
+
 //for disabling other cards
 function disableOtherCards(){
 	for(const card of cards){
 		card.classList.add("disabled");
 	}
 }
+
 //for enabling other cards except the matched cards
 function enableOtherCards(){
 	for(const card of cards){
@@ -134,6 +139,7 @@ function enableOtherCards(){
 		}
 	}
 }
+
 //@description function count the Moves
 function moveCounter(){
 	count++;
@@ -142,9 +148,9 @@ function moveCounter(){
 	if(count === 1){
 		startTimer();
 		startIdealTimeOut();
-		//idealTimeOut();
 	}
 }
+
 //@description function restart the game
 function restartGame(){
 	newGame();
@@ -161,6 +167,7 @@ function restartGame(){
 		star.style.display="block";
 	}
 }
+
 //@description function star rate the game
 function starRating(){
 	if(count > 10 && count < 15){
@@ -178,6 +185,7 @@ function starRating(){
 		}
 	}
 }
+
 //@description function timer
 function setTimer(){
 	sec++;
@@ -188,16 +196,21 @@ function setTimer(){
 			min = 0;
 		}
 	}
-	//timer.textContent = (min ? (min > 9 ? min : "0" + min) : "00") + ":" + (sec > 9 ? sec : "0" + sec);
 	timer.innerHTML = `${min} minute and ${sec} second`;
 	startTimer();
 }
+
+//for starting the timer
 function startTimer(){
 	t = setTimeout(setTimer, 1000);
 }
+
+//for stoping the timer
 function stopTimer(){
 	clearTimeout(t);
 }
+
+//for refreshing the timer
 function resetTimer(){
 	clearTimeout(t);
 	timer.textContent = "0 minute and 0 second";
@@ -205,7 +218,7 @@ function resetTimer(){
 	min = 0;
 }
 
-
+//@description congratulation modal box
 function openModal(){
 	const totalTime = document.querySelector(".timer").innerHTML;
 	const starRating = document.querySelector(".stars").innerHTML;
@@ -220,6 +233,7 @@ function openModal(){
 	closeModal();
 }
 
+//for closing the modal box
 function closeModal(){
 	modalClose.addEventListener("click", function(e){
 		modal.style.display = "none";
@@ -240,6 +254,7 @@ function idealTimeOut(){
 	}
 }
 
+//for starting the ideal timeout timer
 function startIdealTimeOut(){
 	t1 = setTimeout(idealTimeOut, 1000);
 }
