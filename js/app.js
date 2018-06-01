@@ -220,7 +220,6 @@ function resetTimer(){
 }
 
 //@description congratulation modal box
-
 function openSuccessModal(){
 	const totalTime = document.querySelector(".timer").innerHTML;
 	const starRating = document.querySelector(".stars").innerHTML;
@@ -259,9 +258,6 @@ function closeExpireModal(){
 		restartGame();
 	});
 }
-
-
-
 
 //@description function ideal timeout
 function startIdealTimeOut(){
