@@ -191,6 +191,12 @@ h1 {
     float: right;
     margin-right: 15px;
 }
+.score-panel .errorMsg {
+    color: red;
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+}
 /*
  * Styles for the modal box
  */

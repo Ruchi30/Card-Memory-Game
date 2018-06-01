@@ -13,7 +13,7 @@
 // creating an array of all listed cards
 const memoryCard = document.getElementsByClassName("card");
 let cards = [...memoryCard];
-console.log(cards);
+//console.log(cards);
 // All card container
 const cardDeck= document.getElementById("deck");
 //Array for opened cards
@@ -32,6 +32,9 @@ const stars = document.querySelectorAll(".fa-star");
 const timer = document.querySelector(".timer");
 let sec = 0;
 let min = 0;
+//ideal time
+let idealTime = 0;
+let errorMsg = document.querySelector(".errorMsg");
 //Modal box
 const modal = document.querySelector(".modal");
 const modalClose = document.querySelector(".close");
@@ -78,9 +81,11 @@ function newGame(){
 		});
 	}
 }
-//@description function to see the opened card match or unmated
+//@description function to see the opened card match or unmatched
 function openCard(){
 	openedCards.push(this);
+	idealTime = 0;
+	errorMsg.textContent = "";
 	let openedCardLength = openedCards.length;
 	if(openedCardLength === 2){
 		moveCounter();
@@ -136,6 +141,8 @@ function moveCounter(){
 	starRating();
 	if(count === 1){
 		startTimer();
+		startIdealTimeOut();
+		//idealTimeOut();
 	}
 }
 //@description function restart the game
@@ -146,6 +153,7 @@ function restartGame(){
 	matchedCards=[];
 	count = 0;
 	counter.innerHTML = count;
+	//errorMsg.textContent = "";
 	for(const card of cards){
 		card.classList.remove("match","show","open","disabled","unmatch");
 	}
@@ -206,6 +214,7 @@ function openModal(){
 	finalRating.innerHTML = starRating;
 	if(matchedCards.length === 16){
 		stopTimer();
+		clearTimeout(t1);
 		modal.style.display = "block";
 	}
 	closeModal();
@@ -216,6 +225,24 @@ function closeModal(){
 		restartGame();
 	});
 }
+
+//@description function ideal timeout
+function idealTimeOut(){
+	idealTime++
+	startIdealTimeOut();
+	console.log(idealTime);
+	if(idealTime > 10){
+		clearTimeout(t1);
+		idealTime = 0;
+		restartGame();
+		errorMsg.textContent = "Game Reset due to inactivity of 20 Sec";
+	}
+}
+
+function startIdealTimeOut(){
+	t1 = setTimeout(idealTimeOut, 1000);
+}
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
